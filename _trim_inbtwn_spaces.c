@@ -34,7 +34,7 @@ char *_trim_inbtwn_spaces(const char * str)
         i++;
         j++;
     }
-    // NULL terminate the new string
+    /* NULL terminate the new string*/
     newString[j] = '\0';
 
     return newString;

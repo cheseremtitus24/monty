@@ -52,6 +52,9 @@ void printstack(stack_t **start);
 int _atoi(char *s);
 bool check_if_digit(const char *s);
 
+/*file _strdup.c*/
+char *strdup(const char *s);
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -65,6 +68,12 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+typedef struct instruction_sp
+{
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number, int n);
+} instruction_tp;
 
 /*adds operand to stack*/
 void monty_push(stack_t **stack, unsigned int line, int n);

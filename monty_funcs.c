@@ -2,7 +2,7 @@
 #include "monty.h"
 
 /*adds operand to stack*/
-void monty_push(stack_t **stack, unsigned int line, int n) {
+void monty_push(stack_t **stack, unsigned int __attribute__((unused))line, int n) {
     /*printf("monty inserting %d\n", n);*/
     push(stack, n);
 }
@@ -13,7 +13,7 @@ void monty_pop(stack_t **stack, unsigned int line) {
 }
 
 /*prints all stack elements*/
-void monty_pall(stack_t **stack, unsigned int line) {
+void monty_pall(stack_t **stack, unsigned int __attribute__((unused))line) {
     printstack(stack);
 }
 
@@ -47,7 +47,7 @@ void monty_swap(stack_t **stack, unsigned int line) {
 }
 
 /* Performs a no op*/
-void monty_nop(stack_t **stack, unsigned int line) {
+void monty_nop(stack_t __attribute__((unused))**stack, unsigned int __attribute((unused))line) {
     return;
 }
 

@@ -50,7 +50,7 @@ void (*get_op_func(char *s))(stack_t **, unsigned int)
 void (*get_op_p_func(char *s))(stack_t **, unsigned int, int)
 {
     /* array of structs */
-    instruction_t ops[] = {
+    instruction_tp ops[] = {
             { "PUSH", monty_push},
             { NULL, NULL}
     };

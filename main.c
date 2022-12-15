@@ -1,6 +1,4 @@
-//
-// Created by lab on 12/15/22.
-//
+/* Created by lab on 12/15/22.*/
 #include "monty.h"
 
 int main(int argc, char* argv[])
@@ -8,6 +6,8 @@ int main(int argc, char* argv[])
     unsigned int line_counter;
     char line[MAX_LINE_SIZE];
     char *opcode;
+    char *fileName;
+    FILE *file;
     stack_t *start;
 
     start = NULL;
@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
         fprintf(stderr,"USAGE: %s file\n", argv[0]);
         exit(EXIT_FAILURE);
     }
-    char const* const fileName = argv[1];
-    FILE* file = fopen(fileName, "r"); /* should check the result */
+    fileName = argv[1];
+    file = fopen(fileName, "r"); /* should check the result */
 
     if (file == NULL)
     {

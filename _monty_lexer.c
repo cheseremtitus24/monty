@@ -5,10 +5,6 @@
 
 */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdlib.h>
 #include "monty.h"
 /**
  * _istoken- Identifies keywords in character stream
@@ -56,8 +52,8 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
     char *token;
     bool push_flag;
     char *push_cmd;
+    int __attribute__((unused))push_int;
     char *strd;
-    int push_int;
     unsigned int check_line_pos;
     void (*op)(stack_t **, unsigned int);
     void (*op_p)(stack_t **, unsigned int, int);
@@ -80,7 +76,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
          */
         check_line_pos -= strlen(token);
         check_line_pos--;
-        //check_line_pos -= strlen(whitespace);
+        /*check_line_pos -= strlen(whitespace);*/
         /*printf("consumed line length is %d\n", check_line_pos);*/
 
         if (_istoken(token) || push_flag == true)
@@ -172,7 +168,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                 /*printf("command + token: %s\n", token);*/
                 op = get_op_func(token);
                 op(start, file_line_number);
-//                exit(EXIT_FAILURE);
+		/*exit(EXIT_FAILURE);*/
             }
             free(strd);
             /*printf("Everything is a token\n");*/

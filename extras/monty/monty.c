@@ -1,10 +1,10 @@
 #include "monty.h"
-/* A complete working program to*/
-/* demonstrate all stack operations using*/
-/* a doubly linked list*/
+// A complete working program to
+// demonstrate all stack operations using
+// a doubly linked list
 stack_t *top = NULL;
 
-/* Check if stack is empty*/
+// Check if stack is empty
 bool isEmpty(stack_t **start)
 {
 	if (*start == NULL)
@@ -12,10 +12,9 @@ bool isEmpty(stack_t **start)
 	return false;
 }
 
-/* pushes element onto stack*/
+// pushes element onto stack
 void push(stack_t **start, int d)
 {
-
 	stack_t *n;
 	n = malloc(sizeof(stack_t));
 	n->n = d;
@@ -23,8 +22,8 @@ void push(stack_t **start, int d)
 		n->prev = NULL;
 		n->next = NULL;
 
-		/* As it is first node if stack*/
-		/* is empty*/
+		// As it is first node if stack
+		// is empty
 		*start = n;
 		top = n;
 	}
@@ -36,17 +35,13 @@ void push(stack_t **start, int d)
 	}
 }
 
-/* Pops top element from stack*/
-void pop(stack_t **start, unsigned int i)
+// Pops top element from stack
+void pop(stack_t **start)
 {
 	stack_t* n;
 	n = top;
 	if (isEmpty(start))
-    {
-        fprintf(stderr, "L %u: can't pop an empty stack\n", i);
-        exit(EXIT_FAILURE);
-    }
-
+		printf("Stack is empty");
 	else if (top == *start) {
 		top = NULL;
 		*start = NULL;
@@ -59,24 +54,23 @@ void pop(stack_t **start, unsigned int i)
 	}
 }
 
-/* Prints top element of the stack*/
-void topelement(stack_t **start, unsigned int i)
+// Prints top element of the stack
+void topelement(stack_t **start)
 {
 	if (isEmpty(start))
-    {
-        fprintf(stderr, "L %u: can't pint, stack empty\n", i);
-        exit(EXIT_FAILURE);
-    }
+		printf("Stack is empty");
 	else
-		printf("%d\n", top->n);
+		printf(
+			"The element at top of the stack is : %d \n",
+			top->n);
 }
 
-/* Determines the size of the stack*/
-int stacksize(stack_t **start)
+// Determines the size of the stack
+void stacksize(stack_t **start)
 {
 	int c = 0;
 	if (isEmpty(start))
-	    return (0);
+		printf("Stack is empty");
 	else {
 		stack_t* ptr = *start;
 		while (ptr != NULL) {
@@ -84,27 +78,25 @@ int stacksize(stack_t **start)
 			ptr = ptr->next;
 		}
 	}
-	/*printf("Size of the stack is : %d \n ", c);*/
-	return (c);
+	printf("Size of the stack is : %d \n ", c);
 }
 
-/* Determines the size of the stack*/
+// Determines the size of the stack
 void printstack(stack_t **start)
 {
 	if (isEmpty(start))
-	    return;
-		/*printf("Stack is empty");*/
+		printf("Stack is empty");
 	else {
-		stack_t* ptr = top;
-		/*printf("Stack is : ");*/
+		stack_t* ptr = *start;
+		printf("Stack is : ");
 		while (ptr != NULL) {
-			printf("%d\n", ptr->n);
-			ptr = ptr->prev;
+			printf("%d ", ptr->n);
+			ptr = ptr->next;
 		}
-		/*printf("\n");*/
+		printf("\n");
 	}
 }
-/*
+
 // Driver code
 int main()
 {
@@ -123,5 +115,5 @@ int main()
 	stacksize(&start);
 	return 0;
 }
-*/
+
 

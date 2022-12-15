@@ -37,12 +37,16 @@ void push(stack_t **start, int d)
 }
 
 // Pops top element from stack
-void pop(stack_t **start)
+void pop(stack_t **start, unsigned int i)
 {
 	stack_t* n;
 	n = top;
 	if (isEmpty(start))
-		printf("Stack is empty");
+    {
+        fprintf(stderr, "L %u: can't pop an empty stack\n", i);
+        exit(EXIT_FAILURE);
+    }
+
 	else if (top == *start) {
 		top = NULL;
 		*start = NULL;
@@ -56,22 +60,23 @@ void pop(stack_t **start)
 }
 
 // Prints top element of the stack
-void topelement(stack_t **start)
+void topelement(stack_t **start, unsigned int i)
 {
 	if (isEmpty(start))
-		printf("Stack is empty");
+    {
+        fprintf(stderr, "L %u: can't pint, stack empty\n", i);
+        exit(EXIT_FAILURE);
+    }
 	else
-		printf(
-			"The element at top of the stack is : %d \n",
-			top->n);
+		printf("%d\n", top->n);
 }
 
 // Determines the size of the stack
-void stacksize(stack_t **start)
+int stacksize(stack_t **start)
 {
 	int c = 0;
 	if (isEmpty(start))
-		printf("Stack is empty");
+	    return (0);
 	else {
 		stack_t* ptr = *start;
 		while (ptr != NULL) {
@@ -79,22 +84,24 @@ void stacksize(stack_t **start)
 			ptr = ptr->next;
 		}
 	}
-	printf("Size of the stack is : %d \n ", c);
+	/*printf("Size of the stack is : %d \n ", c);*/
+	return (c);
 }
 
 // Determines the size of the stack
 void printstack(stack_t **start)
 {
 	if (isEmpty(start))
-		printf("Stack is empty");
+	    return;
+		/*printf("Stack is empty");*/
 	else {
-		stack_t* ptr = *start;
-		printf("Stack is : ");
+		stack_t* ptr = top;
+		/*printf("Stack is : ");*/
 		while (ptr != NULL) {
-			printf("%d ", ptr->n);
-			ptr = ptr->next;
+			printf("%d\n", ptr->n);
+			ptr = ptr->prev;
 		}
-		printf("\n");
+		/*printf("\n");*/
 	}
 }
 /*

@@ -14,16 +14,16 @@ int main(int argc, char* argv[])
 
     if (argc != 2)
     {
-        fprintf(stderr,"Usage: %s file", argv[0]);
-        return EXIT_FAILURE;
+        fprintf(stderr,"USAGE: %s file\n", argv[0]);
+        exit(EXIT_FAILURE);
     }
     char const* const fileName = argv[1];
     FILE* file = fopen(fileName, "r"); /* should check the result */
 
     if (file == NULL)
     {
-        fprintf(stderr,"Error: Can't open file %s", argv[1]);
-        return EXIT_FAILURE;
+        fprintf(stderr,"Error: Can't open file %s\n", argv[1]);
+        exit(EXIT_FAILURE);
     }
 
 
@@ -40,9 +40,9 @@ int main(int argc, char* argv[])
         opcode = _trim_inbtwn_spaces(line);
 
         /* Converts all characters to their equivalent Capital Letters*/
-//        opcode = _string_toupper(opcode);
+        /*opcode = _string_toupper(opcode);*/
 
-        printf("line %d - %s\n",line_counter, opcode);
+        /*printf("line %d - %s\n",line_counter, opcode);*/
 
         /* pass in the doubly linked stack by ref*/
         _monty_lexer(opcode, line_counter, &start);

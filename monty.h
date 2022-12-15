@@ -44,9 +44,9 @@ void (*get_op_p_func(char *s))(stack_t **, unsigned int, int);
 /* file: monty.c - doubly linked list stack*/
 bool isEmpty(stack_t **start);
 void push(stack_t **start, int d);
-void pop(stack_t **start);
-void topelement(stack_t **start);
-void stacksize(stack_t **start);
+void pop(stack_t **start, unsigned int i);
+void topelement(stack_t **start, unsigned int i);
+int stacksize(stack_t **start);
 void printstack(stack_t **start);
 
 int _atoi(char *s);

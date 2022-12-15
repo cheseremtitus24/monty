@@ -83,7 +83,8 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
         //check_line_pos -= strlen(whitespace);
         /*printf("consumed line length is %d\n", check_line_pos);*/
 
-        if (_istoken(token) || push_flag == true) {
+        if (_istoken(token) || push_flag == true)
+        {
             /**
              * PUSH<SPACE><INTEGER>
              * POP - removes top item of stack
@@ -102,7 +103,8 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                 exit(EXIT_FAILURE);
             }    /* check that we are not at end of line*/
             strd = _string_toupper(strd);
-            if (((!strcmp(strd, "PUSH") && check_line_pos > 0) || (push_flag == true && check_line_pos > 0))) {
+            if (((!strcmp(strd, "PUSH") && check_line_pos > 0) || (push_flag == true && check_line_pos > 0)))
+            {
                 /**
                  * Push we are expecting an integer value
                  * This parser function should pass everything
@@ -124,6 +126,13 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     /*printf("command: %s\n", push_cmd);*/
 
                     token = strtok(NULL, whitespace);
+                    /* handle when push is called with no arguments*/
+                    if (!token)
+                    {
+                        fprintf(stderr, "L %u: usage: push integer\n",file_line_number);
+                        free(push_cmd);
+                        exit(EXIT_FAILURE);
+                    }
                     continue;
                 }
 
@@ -134,7 +143,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     push_cmd = strcat(push_cmd, " ");
                     push_cmd = strcat(push_cmd, token);
                     /*printf("operand: %s\n", token);*/
-                    printf("command + token: %s\n", push_cmd);
+                    /*printf("command + token: %s\n", push_cmd);*/
                     push_flag = false;
                     /* Send string to processing function pointer */
                     op_p = get_op_p_func(push_cmd);
@@ -146,7 +155,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     else
                     {
 
-                        fprintf(stderr, "L %u: unknown instruction %s\n",file_line_number, token);
+                        fprintf(stderr, "L %u: usage: push integer\n",file_line_number);
                         free(push_cmd);
                         exit(EXIT_FAILURE);
                     }
@@ -156,15 +165,13 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                 }
 
             }
-                /* Handle when PUSH is at end of readline*/
+                /* Handle when command is another Token other than push is at end of readline*/
             else {
                 push_flag = false;
                 /*fprintf(stderr, "L %u: unknown instruction %s\n",file_line_number, token);*/
-                printf("command + token: %s\n", token);
+                /*printf("command + token: %s\n", token);*/
                 op = get_op_func(token);
                 op(start, file_line_number);
-
-
 //                exit(EXIT_FAILURE);
             }
             free(strd);

@@ -96,6 +96,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
             if (!strd)
             {
                 fprintf(stderr, "Error: malloc failed\n");
+                free(buffer);
                 exit(EXIT_FAILURE);
             }    /* check that we are not at end of line*/
             strd = _string_toupper(strd);
@@ -117,6 +118,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     /* Check to ensure that string dup was successful*/
                     if (push_cmd == NULL) {
                         fprintf(stderr, "Erro: malloc failed\n");
+                        free(buffer);
                         exit(EXIT_FAILURE);
 
                     }
@@ -128,6 +130,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     {
                         fprintf(stderr, "L %u: usage: push integer\n",file_line_number);
                         free(push_cmd);
+                        free(buffer);
                         exit(EXIT_FAILURE);
                     }
                     continue;
@@ -156,6 +159,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
 
                         fprintf(stderr, "L %u: usage: push integer\n",file_line_number);
                         free(push_cmd);
+                        free(buffer);
                         exit(EXIT_FAILURE);
                     }
 
@@ -178,6 +182,5 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
         token = strtok(NULL, whitespace);
 
     }
-
 
 }

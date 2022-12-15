@@ -101,6 +101,7 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
             strd = _string_toupper(strd);
             if (((!strcmp(strd, "PUSH") && check_line_pos > 0) || (push_flag == true && check_line_pos > 0)))
             {
+                free(strd);
                 /**
                  * Push we are expecting an integer value
                  * This parser function should pass everything
@@ -146,7 +147,9 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                     push_int = _atoi(push_cmd);
                     if (check_if_digit(token))
                     {
-                        op_p(start, file_line_number, _atoi(push_cmd));
+                        /* free the string once processing is complete*/
+                        free(push_cmd);
+                        op_p(start, file_line_number, push_int);
                     }
                     else
                     {
@@ -156,8 +159,6 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                         exit(EXIT_FAILURE);
                     }
 
-                    /* free the string once processing is complete*/
-                    free(push_cmd);
                 }
 
             }
@@ -170,7 +171,6 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
                 op(start, file_line_number);
 		/*exit(EXIT_FAILURE);*/
             }
-            free(strd);
             /*printf("Everything is a token\n");*/
         }
 

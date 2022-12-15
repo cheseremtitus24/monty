@@ -168,6 +168,8 @@ void _monty_lexer(char *buffer, const unsigned int file_line_number, stack_t **s
             }
                 /* Handle when command is another Token other than push is at end of readline*/
             else {
+                if (strd)
+                    free(strd);
                 push_flag = false;
                 /*fprintf(stderr, "L %u: unknown instruction %s\n",file_line_number, token);*/
                 /*printf("command + token: %s\n", token);*/

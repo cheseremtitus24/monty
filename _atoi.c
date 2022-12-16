@@ -8,59 +8,70 @@
  *
  * Return: integer value else 0 on error
  */
-int _atoi(char *s)
+int
+_atoi (char *s)
 {
-    int number, i;
-    int numexists;
-    int flag = 0;
+  int number, i;
+  int numexists;
+  int flag = 0;
 
-    number = 0;
-    numexists = 0;
-    for (i = 0; s[i] != '\0'; i++)
+  number = 0;
+  numexists = 0;
+  for (i = 0; s[i] != '\0'; i++)
     {
-        if (s[i] == '-')
-        {
-            flag += 1;
-            continue;
-        }
-        else if ((s[i] >= ' ' && s[i] <= '/') || (s[i] >= ':' && s[i] <= '@'))
-        {
-            /* checks "23 33" returns only 23*/
-            if (s[i - 1] > '0' && s[i - 1] < '9')
-                break;
-            continue;
-        }
-        else if ((s[i] >= '[' && s[i] <= '`') || (s[i] <= 'z' &&
-                                                  s[i] >= 'a') ||  (s[i] <= 'Z' &&
-                                                                    s[i] >= 'A') || (s[i] >= '{' && s[i] <= '~')
-                 || s[i] == '\n')
-        {
-            /* checks "23z33" returns only 23*/
-            if (s[i - 1] > '0' && s[i - 1] < '9')
-                break;
-            continue;
-        }
-        numexists += 1;
-        number = number * 10 + s[i] - '0';
+      if (s[i] == '-')
+	{
+	  flag += 1;
+	  continue;
+	}
+      else if ((s[i] >= ' ' && s[i] <= '/') || (s[i] >= ':' && s[i] <= '@'))
+	{
+	  /* checks "23 33" returns only 23 */
+	  if (s[i - 1] > '0' && s[i - 1] < '9')
+	    break;
+	  continue;
+	}
+      else if ((s[i] >= '[' && s[i] <= '`') || (s[i] <= 'z' &&
+						s[i] >= 'a') || (s[i] <= 'Z'
+								 && s[i] >=
+								 'A')
+	       || (s[i] >= '{' && s[i] <= '~') || s[i] == '\n')
+	{
+	  /* checks "23z33" returns only 23 */
+	  if (s[i - 1] > '0' && s[i - 1] < '9')
+	    break;
+	  continue;
+	}
+      numexists += 1;
+      number = number * 10 + s[i] - '0';
     }
-    if (flag % 2 == 0)
-        return (number);
-    if (numexists < 1)
-        return (0);
-    /* handle INT_MIN & INT_MAX*/
-    return (number * -1);
+  if (flag % 2 == 0)
+    return (number);
+  if (numexists < 1)
+    return (0);
+  /* handle INT_MIN & INT_MAX */
+  return (number * -1);
 
 }
 
-bool check_if_digit(const char *s)
+/**
+ * check_if_digit- checks if a characters in a string match a digit
+ * @s: string to parse for integer strings
+ *
+ * Description- Parses for integers within a string and returns an integer
+ *
+ * Return: true else false
+ */
+bool
+check_if_digit (const char *s)
 {
-    int i;
-    for (i = 0; s[i] != '\0'; i++)
+  int i;
+  for (i = 0; s[i] != '\0'; i++)
     {
-        if (isdigit(s[i]) == 0)
-        {
-            return (false);
-        }
+      if (isdigit (s[i]) == 0)
+	{
+	  return (false);
+	}
     }
-    return (true);
+  return (true);
 }

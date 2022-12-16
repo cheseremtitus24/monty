@@ -6,37 +6,37 @@
  * Example: _trim(" Hello ") modifies input string to "Hello"
  * Return: void
  */
-char *_trim_inbtwn_spaces(const char * str)
+char *
+_trim_inbtwn_spaces (const char *str)
 {
-    int i, j;
-    char * newString;
+  int i, j;
+  char *newString;
 
-    newString = (char *)malloc(MAX_LINE_SIZE);
+  newString = (char *) malloc (MAX_LINE_SIZE);
 
-    i = 0;
-    j = 0;
+  i = 0;
+  j = 0;
 
-    while(str[i] != '\0')
+  while (str[i] != '\0')
     {
-        /* If blank space is found */
-        if(str[i] == ' ')
-        {
-            newString[j] = ' ';
-            j++;
+      /* If blank space is found */
+      if (str[i] == ' ')
+	{
+	  newString[j] = ' ';
+	  j++;
 
-            /* Skip all consecutive spaces */
-            while(str[i] == ' ')
-                i++;
-        }
+	  /* Skip all consecutive spaces */
+	  while (str[i] == ' ')
+	    i++;
+	}
 
-        newString[j] = str[i];
+      newString[j] = str[i];
 
-        i++;
-        j++;
+      i++;
+      j++;
     }
-    /* NULL terminate the new string*/
-    newString[j] = '\0';
+  /* NULL terminate the new string */
+  newString[j] = '\0';
 
-    return newString;
+  return (newString);
 }
-
